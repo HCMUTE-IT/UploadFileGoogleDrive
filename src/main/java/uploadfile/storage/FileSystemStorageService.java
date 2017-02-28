@@ -130,7 +130,7 @@ public class FileSystemStorageService implements StorageService {
 	     * at ~/.credentials/drive-java-quickstart
 	     */
 	    private static final List<String> SCOPES =
-	        Arrays.asList(DriveScopes.DRIVE_METADATA_READONLY);
+	        Arrays.asList(DriveScopes.DRIVE_FILE);
 
 	    static {
 	        try {
@@ -187,13 +187,12 @@ public class FileSystemStorageService implements StorageService {
 				driveService=getDriveService();
 		com.google.api.services.drive.model.File fileMetadata = new com.google.api.services.drive.model.File();
 		fileMetadata.setName("photo.jpg");
-		System.out.println("kt\n\n" +  filePath.getAbsolutePath());
+		
 		FileContent mediaContent = new FileContent("image/jpg", filePath.getAbsoluteFile());
 		com.google.api.services.drive.model.File file = driveService.files()
 				.create(fileMetadata,mediaContent)
 				.setFields("id")
 				.execute();
 		
-		System.out.println("File id: " +file.getId());
 	}
 }
